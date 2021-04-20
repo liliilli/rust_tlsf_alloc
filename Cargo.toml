@@ -1,0 +1,52 @@
+[package]
+name = "dy_tlsf"
+version = "0.0.1"
+authors = ["neu. <jmyundev@gmail.com>"]
+edition = "2018"
+descripton = "TLSF (Two-level segmented fit) global allocator"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "dy_tlsf"
+path = "src/lib.rs"
+doctest = true
+bench = true
+doc = true
+harness = true
+edition = "2018"
+crate-type = ["lib"]
+
+[dependencies]
+arrayvec = "0.7.0"
+spin = "0.9.0"
+
+[[bench]]
+name = "bench"
+harness = true
+
+[profile.dev]
+opt-level = 0
+debug = true
+lto = false
+debug-assertions = true
+overflow-checks = true
+panic = "unwind"
+
+[profile.test]
+opt-level = 0
+debug = 2
+lto = false
+debug-assertions = true
+overflow-checks = true
+panic = "unwind"
+
+[profile.release]
+opt-level = 3
+debug = false
+debug-assertions = false
+overflow-checks = false
+lto = true
+panic = "abort"
+incremental = true
+
+
