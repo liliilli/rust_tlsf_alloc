@@ -3,7 +3,8 @@ name = "dy_tlsf"
 version = "0.0.1"
 authors = ["neu. <jmyundev@gmail.com>"]
 edition = "2018"
-descripton = "TLSF (Two-level segmented fit) global allocator"
+description = "TLSF (Two-level segmented fit) global allocator"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
