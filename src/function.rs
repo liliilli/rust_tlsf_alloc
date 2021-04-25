@@ -9,6 +9,7 @@ use super::consts::*;
 ///
 /// * 'value' - target value to calculate.
 ///
+#[inline]
 pub fn calculate_msb(value: usize) -> Option<usize> {
     if value == 0 {
         None
@@ -34,6 +35,7 @@ pub fn calculate_msb(value: usize) -> Option<usize> {
 ///
 /// * 'value' - target value to calculate.
 ///
+#[inline]
 pub fn calculate_lsb(value: usize) -> Option<usize> {
     let value = value & (!value).overflowing_add(1).0;
     let offset = {
@@ -80,6 +82,7 @@ pub fn calculate_mapping_indices(block_size: usize) -> (usize, usize) {
 /// # Arguments
 ///
 /// * 'size' - Requested allocation size.
+#[inline(always)]
 pub fn calculate_allocation_size(size: usize) -> usize {
     round_up_block(std::cmp::max(size, MINIMUM_BLOCK_SIZE))
 }
@@ -105,6 +108,7 @@ pub fn calculate_allocation_searching_size(size: usize) -> usize {
 ///
 /// * 'value' - Value to round up.
 ///
+#[inline(always)]
 pub const fn round_up_block(value: usize) -> usize {
     const MASK: usize = BLOCK_ALIGNOF - 1;
     (value + MASK) & !MASK
@@ -116,6 +120,7 @@ pub const fn round_up_block(value: usize) -> usize {
 ///
 /// * 'value' - Value to round down.
 ///
+#[inline(always)]
 pub const fn round_down_block(value: usize) -> usize {
     const MASK: usize = BLOCK_ALIGNOF - 1;
     value & !MASK
@@ -129,6 +134,7 @@ pub const fn round_down_block(value: usize) -> usize {
 ///
 /// # Examples
 ///
+#[inline(always)]
 pub const fn is_aligned(value: usize) -> bool {
     (value & (BLOCK_ALIGNOF - 1)) == 0
 }
@@ -138,6 +144,7 @@ pub const fn is_aligned(value: usize) -> bool {
 /// # Arguments
 ///
 /// * 'mapping_indices' - first and second level index to calculate.
+#[inline(always)]
 pub const fn calculate_index(mapping_indices: (usize, usize)) -> usize {
     let (first, second) = mapping_indices;
     first * SECOND_INDEX_MAX + second
@@ -145,18 +152,21 @@ pub const fn calculate_index(mapping_indices: (usize, usize)) -> usize {
 
 ///
 ///
+#[inline(always)]
 pub const fn gigabytes_of(size: usize) -> usize {
     size * 1024 * 1024 * 1024
 }
 
 ///
 ///
+#[inline(always)]
 pub const fn megabytes_of(size: usize) -> usize {
     size * 1024 * 1024
 }
 
 ///
 ///
+#[inline(always)]
 pub const fn kilobytes_of(size: usize) -> usize {
     size * 1024
 }
