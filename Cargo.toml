@@ -1,6 +1,6 @@
 [package]
 name = "dy_tlsf"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["neu. <jmyundev@gmail.com>"]
 edition = "2018"
 description = "TLSF (Two-level segmented fit) global allocator"
